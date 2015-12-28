@@ -4,7 +4,7 @@
 #
 Name     : pbzip2
 Version  : 1.1.12
-Release  : 1
+Release  : 2
 URL      : https://launchpad.net/pbzip2/1.1/1.1.12/+download/pbzip2-1.1.12.tar.gz
 Source0  : https://launchpad.net/pbzip2/1.1/1.1.12/+download/pbzip2-1.1.12.tar.gz
 Summary  : No detailed summary available
@@ -43,6 +43,10 @@ doc components for the pbzip2 package.
 %patch1 -p1
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export CFLAGS="$CFLAGS -fno-semantic-interposition -ffunction-sections -O3 -flto "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -ffunction-sections -O3 -flto "
 make V=1  %{?_smp_mflags}
 
 %install
