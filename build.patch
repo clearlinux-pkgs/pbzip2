@@ -27,3 +27,14 @@
  
  clean:
  	rm -f *.o pbzip2
+--- pbzip2-1.1.12/Makefile~	2015-12-28 17:10:50.000000000 -0500
++++ pbzip2-1.1.12/Makefile	2015-12-28 17:13:38.020632961 -0500
+@@ -17,7 +17,7 @@
+ 
+ 
+ # Optimization flags
+-CXXFLAGS = -O2
++CXXFLAGS = -O2 $(CFLAGS) -O3
+ 
+ #CXXFLAGS += -g -Wall
+ #CXXFLAGS += -ansi
