@@ -4,7 +4,7 @@
 #
 Name     : pbzip2
 Version  : 1.1.12
-Release  : 2
+Release  : 3
 URL      : https://launchpad.net/pbzip2/1.1/1.1.12/+download/pbzip2-1.1.12.tar.gz
 Source0  : https://launchpad.net/pbzip2/1.1/1.1.12/+download/pbzip2-1.1.12.tar.gz
 Summary  : No detailed summary available
