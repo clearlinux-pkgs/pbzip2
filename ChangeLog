@@ -1,3 +1,8 @@
+Changes in 1.1.13 (Dec 18, 2015)
+- #1404812 add support for DESTDIR in Makefile (thanks to Ryan Schmidt)
+- #1429181 fix bad CYGWIN define (thanks to Marco Atzeri)
+- #1337949 rm unused vars; add hasInFile flag (thanks to Mingxing Zhang)
+- #1524909 - output sometimes truncated on redirected -cd
 Changes in 1.1.12 (Dec 21, 2014)
 - #1402154 - make relative symlinks on install (thanks to Evangelos Foutras)
 - Install manpages to share folder, thanks to Ryan Schmidt (#1402044)
