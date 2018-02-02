@@ -6,7 +6,7 @@
 #
 Name     : pbzip2
 Version  : 1.1.13
-Release  : 6
+Release  : 7
 URL      : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
 Source0  : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
 Source99 : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz.asc
