@@ -6,15 +6,16 @@
 #
 Name     : pbzip2
 Version  : 1.1.13
-Release  : 9
+Release  : 10
 URL      : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
 Source0  : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
-Source99 : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz.asc
+Source1 : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : bzip2-1.0.6
-Requires: pbzip2-bin
-Requires: pbzip2-doc
+Requires: pbzip2-bin = %{version}-%{release}
+Requires: pbzip2-license = %{version}-%{release}
+Requires: pbzip2-man = %{version}-%{release}
 BuildRequires : bzip2-dev
 Patch1: build.patch
 
@@ -28,17 +29,26 @@ decompressed with bzip2).
 %package bin
 Summary: bin components for the pbzip2 package.
 Group: Binaries
+Requires: pbzip2-license = %{version}-%{release}
 
 %description bin
 bin components for the pbzip2 package.
 
 
-%package doc
-Summary: doc components for the pbzip2 package.
-Group: Documentation
+%package license
+Summary: license components for the pbzip2 package.
+Group: Default
 
-%description doc
-doc components for the pbzip2 package.
+%description license
+license components for the pbzip2 package.
+
+
+%package man
+Summary: man components for the pbzip2 package.
+Group: Default
+
+%description man
+man components for the pbzip2 package.
 
 
 %prep
@@ -46,17 +56,27 @@ doc components for the pbzip2 package.
 %patch1 -p1
 
 %build
-export LANG=C
-export SOURCE_DATE_EPOCH=1492440276
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-make V=1  %{?_smp_mflags}
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568082142
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+make  %{?_smp_mflags}
+
 
 %install
-export SOURCE_DATE_EPOCH=1492440276
+export SOURCE_DATE_EPOCH=1568082142
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pbzip2
+cp COPYING %{buildroot}/usr/share/package-licenses/pbzip2/COPYING
 %make_install
 
 %files
@@ -68,6 +88,10 @@ rm -rf %{buildroot}
 /usr/bin/pbzcat
 /usr/bin/pbzip2
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pbzip2/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/pbzip2.1
