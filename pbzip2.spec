@@ -6,10 +6,10 @@
 #
 Name     : pbzip2
 Version  : 1.1.13
-Release  : 12
+Release  : 13
 URL      : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
 Source0  : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
-Source1 : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz.asc
+Source1  : https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : bzip2-1.0.6
@@ -53,6 +53,7 @@ man components for the pbzip2 package.
 
 %prep
 %setup -q -n pbzip2-1.1.13
+cd %{_builddir}/pbzip2-1.1.13
 %patch1 -p1
 
 %build
@@ -60,23 +61,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568082142
+export SOURCE_DATE_EPOCH=1619059743
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1568082142
+export SOURCE_DATE_EPOCH=1619059743
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pbzip2
-cp COPYING %{buildroot}/usr/share/package-licenses/pbzip2/COPYING
+cp %{_builddir}/pbzip2-1.1.13/COPYING %{buildroot}/usr/share/package-licenses/pbzip2/b89274504ae8b921297aa884da54a63d1b96a8eb
 %make_install
 
 %files
@@ -90,7 +91,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/pbzip2/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pbzip2/COPYING
+/usr/share/package-licenses/pbzip2/b89274504ae8b921297aa884da54a63d1b96a8eb
 
 %files man
 %defattr(0644,root,root,0755)
